@@ -3,35 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <title>Ethan | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
-      line-height: 1.6;
+    :root {
+      --bg: #f5f7fa;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --accent: #3366cc;
     }
-    h1 { margin-bottom: 0; }
-    ul { padding-left: 20px; }
-    a {
-      color: #3366cc;
+
+    body.dark {
+      --bg: #0f1220;
+      --card: #171a2b;
+      --text: #f0f0f0;
+      --muted: #aaa;
+      --accent: #7aa2ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* NAV */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 900px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 20px;
       text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .toggle {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-size: 1rem;
+    }
+
+    /* LAYOUT */
+    main {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    section {
+      background: var(--card);
+      padding: 40px;
+      margin-bottom: 40px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 2.4rem;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 1rem;
+    }
+
+    p {
+      line-height: 1.7;
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 20px;
+      border-radius: 10px;
+      background: var(--bg);
+    }
+
+    /* CONTACT */
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* SCROLL TO TOP */
+    #topBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      padding: 12px 14px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+      display: none;
+    }
+
+    #topBtn:hover {
+      opacity: 0.9;
     }
   </style>
 </head>
 
 <body>
-  <h1>Hello, I’m Ethan</h1>
-  <p>I build simple things on the web and enjoy clean code.</p>
 
-  <h2>Work</h2>
-  <ul>
-    <li><strong>Project One</strong> – small, useful, and finished</li>
-    <li><strong>Project Two</strong> – learned a lot here</li>
-  </ul>
+<header>
+  <nav>
+    <strong>Ethan</strong>
+    <div>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+      <button class="toggle" onclick="toggleDark()">🌙</button>
+    </div>
+  </nav>
+</header>
 
-  <h2>Contact</h2>
-  <p>
-    <a href="mailto:ethan@gmail.com">ethan@gmail.com</a>
-  </p>
+<main>
+
+  <section id="about">
+    <h1>Hello, I’m Ethan</h1>
+    <p>
+      I’m an upcoming web developer and although my experiences are limited, my passion is not.
+    </p>
+  </section>
+
+  <section id="work">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="card">
+        <strong>Project One</strong>
+        <p>A small tool that solves a real problem.</p>
+      </div>
+      <div class="card">
+        <strong>Project Two</strong>
+        <p>Focused on learning and experimentation.</p>
+      </div>
+      <div class="card">
+        <strong>Project Three</strong>
+        <p>Clean UI, simple logic, solid result.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Email me at
+      <a href="mailto:ethan@gmail.com">ethan@gmail.com</a>
+    </p>
+  </section>
+
+</main>
+
+<button id="topBtn" onclick="scrollToTop()">↑</button>
+
+<script>
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
+
+  const topBtn = document.getElementById("topBtn");
+
+  window.addEventListener("scroll", () => {
+    topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+  });
+
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+
 </body>
 </html>
